@@ -1,0 +1,23 @@
+private static ArrayList filesList;
+/**
+     * 根据path查询所有制定type文件
+     * @param path
+     * @param type
+     */
+private static void search(File path, String[] type) {
+        if (path != null) {
+            File[] fArr = path.listFiles();
+            for (File f : fArr) {
+                if (f.isDirectory()) {
+                    search(f,type);
+                } else {
+                    for (int i=0;i<type.length;i++) {
+                        if (f.getAbsolutePath().endsWith(type[i])) {
+                            filesList.add(f.getAbsolutePath());
+                            Log.i("path", f.getAbsolutePath());
+                        }
+                    }
+                }
+            }
+        }
+    }
